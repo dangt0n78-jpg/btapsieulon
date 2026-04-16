@@ -1,16 +1,11 @@
--- =========================================================================
--- PHẦN 1: TẠO VÀ SỬ DỤNG CƠ SỞ DỮ LIỆU
--- =========================================================================
+
 CREATE DATABASE QuanLyNhanKhau;
 GO
 
 USE QuanLyNhanKhau;
 GO
 
--- =========================================================================
--- PHẦN 2: TẠO CÁC BẢNG (TABLES) VÀ KHÓA CHÍNH, KHÓA NGOẠI
--- LƯU Ý: Phải tạo bảng NHAN_KHAU đầu tiên vì các bảng khác đều nối vào nó
--- =========================================================================
+
 
 -- 1. BẢNG NHÂN KHẨU (Thông tin cốt lõi của công dân)
 CREATE TABLE NHAN_KHAU (
