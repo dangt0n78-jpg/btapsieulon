@@ -88,3 +88,61 @@ CREATE TABLE TAI_KHOAN_VNEID (
     CONSTRAINT FK_TaiKhoan_NhanKhau FOREIGN KEY (SoCCCD) REFERENCES NHAN_KHAU(SoCCCD)
 );
 GO
+
+
+-- 1. THÊM DỮ LIỆU BẢNG NHÂN KHẨU
+INSERT INTO NHAN_KHAU (SoCCCD, HoTen, NgaySinh, GioiTinh, QueQuan, DanToc, TonGiao, NhomMau)
+VALUES 
+('001099000001', N'Trần Văn Ông', '1950-10-10', N'Nam', N'Hà Nội', N'Kinh', N'Không', 'O'),
+('001099000002', N'Nguyễn Thị Bà', '1955-05-20', N'Nữ', N'Hà Nội', N'Kinh', N'Phật giáo', 'A'),
+('001099000003', N'Trần Văn Cha', '1978-02-15', N'Nam', N'Hà Nội', N'Kinh', N'Không', 'O'),
+('001099000004', N'Lê Thị Mẹ', '1982-11-22', N'Nữ', N'Thanh Hóa', N'Kinh', N'Không', 'B'),
+('001099000005', N'Trần Thị Con Gái', '2005-08-08', N'Nữ', N'Hà Nội', N'Kinh', N'Không', 'O'),
+('001099000006', N'Trần Văn Con Trai', '2010-12-01', N'Nam', N'Hà Nội', N'Kinh', N'Không', 'AB'),
+('038099000007', N'Lê Hoàng Sinh Viên', '2004-09-05', N'Nam', N'Nghệ An', N'Kinh', N'Công giáo', 'A');
+GO
+
+-- 2. THÊM DỮ LIỆU BẢNG HỘ KHẨU
+INSERT INTO HO_KHAU (MaHoKhau, SoCCCD_ChuHo, DiaChiThuongTru, NgayLapHo)
+VALUES 
+('HK_HN_0001', '001099000001', N'Số 10, Ngõ 20, Phố Vọng, Hai Bà Trưng, Hà Nội', '2000-01-01'),
+('HK_HN_0002', '001099000003', N'Căn hộ 12A, Chung cư X, Thanh Xuân, Hà Nội', '2015-06-10'),
+('HK_NA_0003', '038099000007', N'Xóm 5, Xã Y, Huyện Quỳnh Lưu, Nghệ An', '2022-09-01');
+GO
+
+-- 3. THÊM DỮ LIỆU BẢNG THÀNH VIÊN HỘ
+INSERT INTO THANH_VIEN_HO (MaHoKhau, SoCCCD, QuanHeVoiChuHo, NgayNhapKhau)
+VALUES 
+('HK_HN_0001', '001099000002', N'Vợ', '2000-01-01'),
+('HK_HN_0002', '001099000004', N'Vợ', '2015-06-10'),
+('HK_HN_0002', '001099000005', N'Con đẻ', '2015-06-10'),
+('HK_HN_0002', '001099000006', N'Con đẻ', '2015-06-10');
+GO
+
+-- 4. THÊM DỮ LIỆU BẢNG QUAN HỆ GIA ĐÌNH
+INSERT INTO QUAN_HE_GIA_DINH (SoCCCD_Nguoi1, SoCCCD_Nguoi2, LoaiQuanHe)
+VALUES 
+('001099000001', '001099000002', N'Vợ Chồng'),
+('001099000003', '001099000004', N'Vợ Chồng'),
+('001099000001', '001099000003', N'Cha Con'),
+('001099000002', '001099000003', N'Mẹ Con'),
+('001099000003', '001099000005', N'Cha Con'),
+('001099000004', '001099000005', N'Mẹ Con');
+GO
+
+-- 5. THÊM DỮ LIỆU BẢNG KHAI BÁO CƯ TRÚ
+INSERT INTO KHAI_BAO_CU_TRU (MaKhaiBao, SoCCCD, LoaiKhaiBao, DiaChiCuTru, TuNgay, DenNgay, LyDo)
+VALUES 
+('KB_TT_001', '001099000005', N'Tạm trú', N'Ký túc xá ĐH Bách Khoa Hà Nội', '2023-09-05', '2027-09-05', N'Đi học'),
+('KB_TT_002', '038099000007', N'Tạm trú', N'Số 5, Ngõ 10, Tạ Quang Bửu, Hà Nội', '2024-02-10', '2024-08-10', N'Thuê trọ đi học'),
+('KB_TV_001', '001099000003', N'Tạm vắng', N'Hồ Chí Minh', '2024-04-01', '2024-05-01', N'Đi công tác');
+GO
+
+-- 6. THÊM DỮ LIỆU BẢNG TÀI KHOẢN VNEID
+INSERT INTO TAI_KHOAN_VNEID (SoCCCD, SoDienThoai, MatKhau, MucDoDinhDanh, TrangThai)
+VALUES 
+('001099000003', '0901234567', 'hashed_pass_123', 2, N'Hoạt động'),
+('001099000004', '0912345678', 'hashed_pass_456', 2, N'Hoạt động'),
+('001099000005', '0987654321', 'hashed_pass_789', 1, N'Hoạt động'),
+('038099000007', '0977111222', 'hashed_pass_abc', 2, N'Hoạt động');
+GO
