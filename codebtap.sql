@@ -208,56 +208,35 @@ VALUES
 ('038099000007', '0977111222', 'hashed_pass_abc', 2, N'Hoạt động');
 GO
 
--- 7. Thêm dữ liệu bảng lịch sử đăng nhập
-INSERT INTO LICH_SU_DANG_NHAP (SoCCCD, ThietBi)
+-- 7. THÊM DỮ LIỆU BẢNG LỊCH SỬ ĐĂNG NHẬP (Đã thêm đủ 5 cột vào dấu ngoặc)
+INSERT INTO LICH_SU_DANG_NHAP (SoCCCD, ThoiGian, DiaChiIP, ThietBi, TrangThai)
 VALUES 
--- Trần Văn Cha (003) đăng nhập thường xuyên
 ('001099000003', '2026-04-15 08:30:00', '192.168.1.15', N'Trình duyệt Web (Windows)', N'Thành công'),
 ('001099000003', '2026-04-16 19:45:12', '113.190.22.45', N'Ứng dụng VNeID (iOS)', N'Thành công'),
-
--- Lê Thị Mẹ (004)
 ('001099000004', '2026-04-14 14:20:00', '192.168.1.20', N'Trình duyệt Web (Windows)', N'Thành công'),
-
--- Lê Hoàng Sinh Viên (007) đăng nhập từ nhiều nơi
 ('038099000007', '2026-04-10 21:00:00', '1.54.222.10', N'Ứng dụng VNeID (Android)', N'Thành công'),
 ('038099000007', '2026-04-18 10:15:30', '192.168.1.55', N'Trình duyệt Web (MacOS)', N'Thành công'),
-
--- Trần Thị Con Gái (005)
 ('001099000005', '2026-04-12 09:00:00', '14.226.12.3', N'Ứng dụng VNeID (iOS)', N'Thành công'),
-
--- Thử nghiệm đăng nhập sai mật khẩu (tăng tính thực tế cho báo cáo)
 ('001099000003', '2026-04-19 11:30:00', '192.168.1.15', N'Trình duyệt Web (Windows)', N'Thất bại');
 GO
 
--- 8. Thêm dữ liệu giấy tờ tích hợp
-INSERT INTO GIAY_TO_TICH_HOP (SoCCCD, LoaiGiayTo, SoGiayTo, NgayBatDau, NgayHetHan, NoiCap)
+-- 8. THÊM DỮ LIỆU GIẤY TỜ TÍCH HỢP (Đã thêm cột TrangThai vào dấu ngoặc)
+INSERT INTO GIAY_TO_TICH_HOP (SoCCCD, LoaiGiayTo, SoGiayTo, NgayBatDau, NgayHetHan, NoiCap, TrangThai)
 VALUES 
--- Trần Văn Ông (001): BHYT người cao tuổi & Bằng lái cũ
 ('001099000001', N'Bảo hiểm Y tế', 'GD40199001001', '2024-01-01', '2024-12-31', N'BHXH TP. Hà Nội', N'Đã xác thực'),
 ('001099000001', N'Giấy phép lái xe', '29005123456', '2010-05-20', '2030-05-20', N'Sở GTVT Hà Nội', N'Đã xác thực'),
-
--- Trần Văn Cha (003): BHYT doanh nghiệp & Bằng lái B2
 ('001099000003', N'Bảo hiểm Y tế', 'DN40109900003', '2024-01-01', '2024-12-31', N'BHXH TP. Hà Nội', N'Đã xác thực'),
 ('001099000003', N'Giấy phép lái xe', '29015987654', '2018-03-15', '2028-03-15', N'Sở GTVT Hà Nội', N'Đã xác thực'),
-
--- Lê Hoàng Sinh Viên (007): BHYT sinh viên & Bằng lái A1
 ('038099000007', N'Bảo hiểm Y tế', 'SV43809900007', '2023-10-01', '2024-09-30', N'BHXH Tỉnh Nghệ An', N'Đã xác thực'),
 ('038099000007', N'Giấy phép lái xe', '37022123456', '2022-10-10', '2032-10-10', N'Sở GTVT Nghệ An', N'Đã xác thực'),
-
--- Hai đứa trẻ: Chỉ có BHYT (Học sinh)
 ('001099000005', N'Bảo hiểm Y tế', 'HS40109900005', '2023-09-01', '2024-08-31', N'BHXH TP. Hà Nội', N'Đã xác thực'),
 ('001099000006', N'Bảo hiểm Y tế', 'HS40109900006', '2023-09-01', '2024-08-31', N'BHXH TP. Hà Nội', N'Đang chờ xác thực');
 GO
 
--- 9. THÊM DỮ LIỆU BẢNG HỒ SƠ DỊCH VỤ CÔNG
+-- 9. THÊM DỮ LIỆU BẢNG HỒ SƠ DỊCH VỤ CÔNG (Đoạn này của bạn vốn đã đúng rồi, mình ghi lại cho đủ bộ)
 INSERT INTO HO_SO_DICH_VU_CONG (SoCCCD, LoaiThuTuc, NoiDen, TuNgay, DenNgay, NgayNop, TrangThai)
 VALUES 
--- Hồ sơ 1: Trần Văn Cha (003) đi công tác (Đã duyệt)
 ('001099000003', N'Khai báo tạm vắng', N'Hồ Chí Minh', '2024-04-01', '2024-05-01', '2024-03-25 09:15:00', N'Đã duyệt'),
-
--- Hồ sơ 2: Trần Thị Con Gái (005) đăng ký ở KTX (Đang chờ duyệt)
 ('001099000005', N'Đăng ký tạm trú', N'Ký túc xá ĐH Bách Khoa Hà Nội', '2023-09-05', '2027-09-05', '2023-09-02 14:30:00', N'Đang chờ duyệt'),
-
--- Hồ sơ 3: Lê Hoàng Sinh Viên (007) đăng ký tạm trú nhưng bị từ chối do thiếu giấy tờ
 ('038099000007', N'Đăng ký tạm trú', N'Số 5, Ngõ 10, Tạ Quang Bửu, Hà Nội', '2024-02-10', '2024-08-10', '2024-02-05 10:00:00', N'Bị từ chối');
 GO
