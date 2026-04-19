@@ -89,6 +89,32 @@ CREATE TABLE TAI_KHOAN_VNEID (
 );
 GO
 
+CREATE TABLE HO_SO_DICH_VU_CONG (
+    MaHoSo INT IDENTITY(1,1) PRIMARY KEY, -- Tự động tăng
+    SoCCCD VARCHAR(12) NOT NULL,
+    LoaiThuTuc NVARCHAR(50) NOT NULL, -- Ví dụ: Khai báo tạm vắng, Đăng ký tạm trú
+    NoiDen NVARCHAR(255) NOT NULL,
+    TuNgay DATE,
+    DenNgay DATE,
+    NgayNop DATETIME DEFAULT GETDATE(),
+    TrangThai NVARCHAR(50) DEFAULT N'Đang chờ duyệt', -- Khớp với chữ màu cam trên web
+    
+    CONSTRAINT FK_DVC_NhanKhau FOREIGN KEY (SoCCCD) REFERENCES NHAN_KHAU(SoCCCD)
+);
+GO
+
+CREATE TABLE LICH_SU_DANG_NHAP (
+    MaLog INT IDENTITY(1,1) PRIMARY KEY,
+    SoCCCD VARCHAR(12) NOT NULL,
+    ThoiGian DATETIME DEFAULT GETDATE(),
+    DiaChiIP VARCHAR(50) DEFAULT '192.168.1.15', -- Khớp với IP giả lập trên web
+    ThietBi NVARCHAR(100),
+    TrangThai NVARCHAR(50) DEFAULT N'Thành công',
+    
+    CONSTRAINT FK_Log_TaiKhoan FOREIGN KEY (SoCCCD) REFERENCES TAI_KHOAN_VNEID(SoCCCD)
+);
+GO
+
 
 -- 1. THÊM DỮ LIỆU BẢNG NHÂN KHẨU
 INSERT INTO NHAN_KHAU (SoCCCD, HoTen, NgaySinh, GioiTinh, QueQuan, DanToc, TonGiao, NhomMau)
@@ -145,4 +171,10 @@ VALUES
 ('001099000004', '0912345678', 'hashed_pass_456', 2, N'Hoạt động'),
 ('001099000005', '0987654321', 'hashed_pass_789', 1, N'Hoạt động'),
 ('038099000007', '0977111222', 'hashed_pass_abc', 2, N'Hoạt động');
+GO
+
+INSERT INTO LICH_SU_DANG_NHAP (SoCCCD, ThietBi) 
+VALUES ('001099000003', N'Trình duyệt Web (Windows)');
+INSERT INTO LICH_SU_DANG_NHAP (SoCCCD, ThietBi) 
+VALUES ('001099000003', N'Ứng dụng VNeID (Thiết bị di động)');
 GO
