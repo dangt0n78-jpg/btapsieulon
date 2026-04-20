@@ -98,7 +98,7 @@ CREATE TABLE HO_SO_DICH_VU_CONG (
     TuNgay DATE,
     DenNgay DATE,
     NgayNop DATETIME DEFAULT GETDATE(),
-    TrangThai NVARCHAR(50) DEFAULT N'Đang chờ duyệt', -- Khớp với chữ màu cam trên web
+    TrangThai NVARCHAR(50) DEFAULT N'Đang chờ duyệt', 
     
     CONSTRAINT FK_DVC_NhanKhau FOREIGN KEY (SoCCCD) REFERENCES NHAN_KHAU(SoCCCD)
 );
@@ -109,7 +109,7 @@ CREATE TABLE LICH_SU_DANG_NHAP (
     MaLog INT IDENTITY(1,1) PRIMARY KEY,
     SoCCCD VARCHAR(12) NOT NULL,
     ThoiGian DATETIME DEFAULT GETDATE(),
-    DiaChiIP VARCHAR(50) DEFAULT '192.168.1.15', -- Khớp với IP giả lập trên web
+    DiaChiIP VARCHAR(50) DEFAULT '192.168.1.15', 
     ThietBi NVARCHAR(100),
     TrangThai NVARCHAR(50) DEFAULT N'Thành công',
     
@@ -192,23 +192,16 @@ GO
 -- 6. THÊM DỮ LIỆU BẢNG TÀI KHOẢN VNEID
 INSERT INTO TAI_KHOAN_VNEID (SoCCCD, SoDienThoai, MatKhau, MucDoDinhDanh, TrangThai)
 VALUES 
--- Nhóm Ông Bà (Tài khoản Mức 2)
 ('001099000001', '0911111111', 'hashed_pass_001', 2, N'Hoạt động'), 
 ('001099000002', '0922222222', 'hashed_pass_002', 2, N'Hoạt động'), 
-
--- Nhóm Cha Mẹ (Tài khoản Mức 2)
 ('001099000003', '0901234567', 'hashed_pass_123', 2, N'Hoạt động'), 
 ('001099000004', '0912345678', 'hashed_pass_456', 2, N'Hoạt động'), 
-
--- Nhóm Con Cái (Dưới 18 hoặc chưa đủ giấy tờ -> Tài khoản Mức 1)
 ('001099000005', '0987654321', 'hashed_pass_789', 1, N'Hoạt động'), 
 ('001099000006', '0933333333', 'hashed_pass_006', 1, N'Hoạt động'), 
-
--- Nhóm Sinh Viên (Tài khoản Mức 2)
 ('038099000007', '0977111222', 'hashed_pass_abc', 2, N'Hoạt động');
 GO
 
--- 7. THÊM DỮ LIỆU BẢNG LỊCH SỬ ĐĂNG NHẬP (Đã thêm đủ 5 cột vào dấu ngoặc)
+-- 7. THÊM DỮ LIỆU BẢNG LỊCH SỬ ĐĂNG NHẬP 
 INSERT INTO LICH_SU_DANG_NHAP (SoCCCD, ThoiGian, DiaChiIP, ThietBi, TrangThai)
 VALUES 
 ('001099000003', '2026-04-15 08:30:00', '192.168.1.15', N'Trình duyệt Web (Windows)', N'Thành công'),
@@ -220,7 +213,7 @@ VALUES
 ('001099000003', '2026-04-19 11:30:00', '192.168.1.15', N'Trình duyệt Web (Windows)', N'Thất bại');
 GO
 
--- 8. THÊM DỮ LIỆU GIẤY TỜ TÍCH HỢP (Đã thêm cột TrangThai vào dấu ngoặc)
+-- 8. THÊM DỮ LIỆU GIẤY TỜ TÍCH HỢP 
 INSERT INTO GIAY_TO_TICH_HOP (SoCCCD, LoaiGiayTo, SoGiayTo, NgayBatDau, NgayHetHan, NoiCap, TrangThai)
 VALUES 
 ('001099000001', N'Bảo hiểm Y tế', 'GD40199001001', '2024-01-01', '2024-12-31', N'BHXH TP. Hà Nội', N'Đã xác thực'),
@@ -233,7 +226,7 @@ VALUES
 ('001099000006', N'Bảo hiểm Y tế', 'HS40109900006', '2023-09-01', '2024-08-31', N'BHXH TP. Hà Nội', N'Đang chờ xác thực');
 GO
 
--- 9. THÊM DỮ LIỆU BẢNG HỒ SƠ DỊCH VỤ CÔNG (Đoạn này của bạn vốn đã đúng rồi, mình ghi lại cho đủ bộ)
+-- 9. THÊM DỮ LIỆU BẢNG HỒ SƠ DỊCH VỤ CÔNG 
 INSERT INTO HO_SO_DICH_VU_CONG (SoCCCD, LoaiThuTuc, NoiDen, TuNgay, DenNgay, NgayNop, TrangThai)
 VALUES 
 ('001099000003', N'Khai báo tạm vắng', N'Hồ Chí Minh', '2024-04-01', '2024-05-01', '2024-03-25 09:15:00', N'Đã duyệt'),
